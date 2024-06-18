@@ -1,5 +1,6 @@
 import { useState, createContext, useContext, useCallback } from "react";
 import { useSelectedLocation } from "./LocationContext";
+import { useAPI } from "./APIContext";
 
 const WeatherContext = createContext({});
 
@@ -8,6 +9,7 @@ export function useWeather() {
 }
 
 export const WeatherProvider = ({ children }) => {
+  const [, , , getWeather] = useAPI();
   const selectedLocations = useSelectedLocation();
   const [weatherData, setWeatherData] = useState(null);
 
@@ -17,26 +19,8 @@ export const WeatherProvider = ({ children }) => {
   );
 
   const getWeatherData = useCallback(() => {
-    const selectedLocation = selectedLocations[0];
-
-    if (!selectedLocation) return;
-
-    const { latitude, longitude } = selectedLocation;
-
-    if (!latitude || !longitude) return;
-
-    const url = new URL("/weather", "http://localhost:3000");
-    url.searchParams.set("latitude", latitude);
-    url.searchParams.set("longitude", longitude);
-
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => ({
-        ...data,
-        name: selectedLocations.map((l) => l.name).join(", "),
-      }))
-      .then((data) => setWeatherData(data));
-  }, [setWeatherData, selectedLocations]);
+    getWeather(selectedLocations, setWeatherData);
+  }, [setWeatherData, selectedLocations, getWeather]);
 
   return (
     <WeatherContext.Provider

@@ -3,9 +3,10 @@ import { createContext, useContext } from "react";
 const APIContext = createContext(null);
 
 export function useAPI() {
-  const { getCountries, getStates, getCities } = useContext(APIContext);
+  const { getCountries, getStates, getCities, getWeather } =
+    useContext(APIContext);
 
-  return [getCountries, getStates, getCities];
+  return [getCountries, getStates, getCities, getWeather];
 }
 
 async function getDataFromBFF(path) {
@@ -30,8 +31,32 @@ export function APIProvider({ children }) {
     );
   }
 
+  function getWeather(selectedLocations, setWeatherData) {
+    const selectedLocation = selectedLocations[0];
+
+    if (!selectedLocation) return;
+
+    const { latitude, longitude } = selectedLocation;
+
+    if (!latitude || !longitude) return;
+
+    const url = new URL("/weather", "http://localhost:3000");
+    url.searchParams.set("latitude", latitude);
+    url.searchParams.set("longitude", longitude);
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => ({
+        ...data,
+        name: selectedLocations.map((l) => l.name).join(", "),
+      }))
+      .then((data) => setWeatherData(data));
+  }
+
   return (
-    <APIContext.Provider value={{ getCountries, getStates, getCities }}>
+    <APIContext.Provider
+      value={{ getCountries, getStates, getCities, getWeather }}
+    >
       {children}
     </APIContext.Provider>
   );
