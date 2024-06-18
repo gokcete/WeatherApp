@@ -1,0 +1,27 @@
+.weathercontainer {
+  background-color: rgba(6, 1, 75, 0.5);
+  color: white;
+  border-radius: 15px;
+  text-align: center;
+  padding: 1rem;
+}
+
+.temp .number {
+  font-size: 5rem;
+}
+
+.temp .unit {
+  font-size: 1rem;
+  position: relative;
+  bottom: 2.8rem;
+}
+
+.description {
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+}
+
+.weatherdetails {
+  font-size: 0.9rem;
+}

@@ -1,0 +1,20 @@
+.header {
+  color: white;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(6, 1, 75, 0.971);
+  border-radius: 15px;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  display: flex;
+}
+
+.img {
+  width: 75px;
+}

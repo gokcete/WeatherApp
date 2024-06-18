@@ -1,0 +1,91 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  background: url("./assets/wallpaper.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: scroll;
+  max-width: 800px;
+  margin: auto;
+  padding-bottom: 2rem;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
+/* header {
+  color: white;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.405);
+  border-radius: 15px;
+}
+
+header .logo {
+  display: flex;
+}
+
+header img {
+  width: 75px;
+} */
+
+/* header nav {
+  width: 80%;
+} */
+
+/* header nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-evenly;
+} */
+
+/* .weather-container {
+  background-color: rgba(0, 0, 0, 0.535);
+  color: white;
+  border-radius: 15px;
+  text-align: center;
+  padding: 1rem;
+}
+
+.weather-container .location {
+  margin-bottom: 2.5rem;
+}
+
+.temp .number {
+  font-size: 5rem;
+}
+
+.temp .unit {
+  font-size: 1rem;
+  position: relative;
+  bottom: 2.8rem;
+}
+
+.description {
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+}
+
+.weather-details {
+  font-size: 0.9rem;
+}
+ */

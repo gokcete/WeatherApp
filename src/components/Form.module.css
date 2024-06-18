@@ -1,0 +1,34 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1rem;
+  background-color: rgba(6, 1, 75, 0.5);
+  margin: 2rem auto;
+  padding: 0.5rem;
+  border-radius: 15px;
+}
+
+.select {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  width: 300px;
+}
+
+.button {
+  background-color: rgb(189, 246, 189);
+  color: gray;
+  border: 1px solid gray;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+}
+
+.hidden {
+  display: none;
+}
