@@ -1,3 +1,4 @@
+import { APIProvider } from "./contexts/APIContext";
 import { LocationProvider } from "./contexts/LocationContext";
 import { WeatherProvider } from "./contexts/WeatherContext";
 import { Routes, Route } from "react-router-dom";
@@ -10,19 +11,21 @@ import NotFound from "./components/NotFound";
 
 function App() {
   return (
-    <LocationProvider>
-      <WeatherProvider>
-        <main>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="about" element={<About />} />
+    <APIProvider>
+      <LocationProvider>
+        <WeatherProvider>
+          <main>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="about" element={<About />} />
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-      </WeatherProvider>
-    </LocationProvider>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+        </WeatherProvider>
+      </LocationProvider>
+    </APIProvider>
   );
 }
 

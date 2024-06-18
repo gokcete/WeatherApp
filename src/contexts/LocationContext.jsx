@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { useAPI } from "./APIContext";
 
 const LocationContext = createContext({});
 
@@ -33,6 +34,8 @@ export function useCities() {
 }
 
 export function LocationProvider({ children }) {
+  const [getCountries, getStates, getCities] = useAPI();
+
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
@@ -42,7 +45,7 @@ export function LocationProvider({ children }) {
   const [selectedCity, setSelectedCity] = useState(null);
 
   useEffect(() => {
-    getDataFromBFF("/countries").then((data) => setCountries(data));
+    getCountries(setCountries);
   }, []);
 
   function selectCountry(country) {
@@ -52,9 +55,7 @@ export function LocationProvider({ children }) {
     setStates([]);
     setSelectedCountry(country);
 
-    getDataFromBFF(`/countries/${country.code}/states`).then((data) =>
-      setStates(data)
-    );
+    getStates(country.code, setStates);
   }
 
   function selectState(state) {
@@ -62,9 +63,7 @@ export function LocationProvider({ children }) {
     setCities([]);
     setSelectedState(state);
 
-    getDataFromBFF(
-      `/countries/${selectedCountry.code}/states/${state.code}/cities`
-    ).then((data) => setCities(data));
+    getCities(selectedCountry.code, state.code, setCities);
   }
 
   function selectCity(city) {
@@ -91,7 +90,6 @@ export function LocationProvider({ children }) {
 }
 
 async function getDataFromBFF(path) {
-  return fetch(`${import.meta.env.VITE_BFF_BASE_URL}${path}`).then((res) =>
-    res.json()
-  );
+  const url = new URL(path, import.meta.env.VITE_BFF_BASE_URL);
+  return fetch(url).then((res) => res.json());
 }
