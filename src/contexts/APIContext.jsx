@@ -9,8 +9,11 @@ export function useAPI() {
   return [getCountries, getStates, getCities, getWeather];
 }
 
-async function getDataFromBFF(path) {
+async function getDataFromBFF(path, searchParams) {
   const url = new URL(path, import.meta.env.VITE_BFF_BASE_URL);
+
+  searchParams?.forEach((value, key) => url.searchParams.append(key, value));
+
   return fetch(url).then((res) => res.json());
 }
 
@@ -40,12 +43,11 @@ export function APIProvider({ children }) {
 
     if (!latitude || !longitude) return;
 
-    const url = new URL("/weather", "http://localhost:3000");
-    url.searchParams.set("latitude", latitude);
-    url.searchParams.set("longitude", longitude);
+    const searchParams = new URLSearchParams();
+    searchParams.set("latitude", latitude);
+    searchParams.set("longitude", longitude);
 
-    fetch(url)
-      .then((res) => res.json())
+    getDataFromBFF("/weather", searchParams)
       .then((data) => ({
         ...data,
         name: selectedLocations.map((l) => l.name).join(", "),
