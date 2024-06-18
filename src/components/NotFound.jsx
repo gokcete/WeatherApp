@@ -1,7 +1,11 @@
-import React from "react";
+import styles from "./NotFound.module.css";
 
 const NotFound = () => {
-  return <div>Page Not Found</div>;
+  return (
+    <div className={styles.notfound}>
+      <h1>Page Not Found</h1>
+    </div>
+  );
 };
 
 export default NotFound;

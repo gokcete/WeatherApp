@@ -11,8 +11,10 @@ const Header = () => {
           <img className={styles.img} src={logo} alt="logo" />
           <h3>MyWeather</h3>
         </div>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
+        <nav className={styles.navbar}>
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+        </nav>
       </header>
     </>
   );

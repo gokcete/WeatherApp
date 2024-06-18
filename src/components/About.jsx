@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./About.module.css";
 
 const About = () => {
   return (
-    <div>
+    <div className={styles.about}>
       <h2>About</h2>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi esse ab,
@@ -15,12 +16,14 @@ const About = () => {
         voluptates, consequuntur, repellendus ex saepe nihil deleniti,
         perspiciatis laborum dignissimos vero laudantium minima!Quae, nobis.
         Voluptatibus tempore rem provident in atque fuga fugiat minus veniam
-        molestiae exercitationem aut, quod vero! Pariatur repellat possimus
-        voluptate perferendis sed. Doloribus repellendus, explicabo modi sit
-        consequuntur aliquid.Ducimus, fugit quos consectetur similique optio
-        dicta dignissimos quam, iure magni eius, eaque mollitia ipsum libero
-        facere fuga cumque nulla ullam cupiditate nostrum error tenetur cum modi
-        praesentium nihil! Laudantium!
+        molestiae exercitationem aut, quod vero!
+      </p>
+      <p>
+        Pariatur repellat possimus voluptate perferendis sed. Doloribus
+        repellendus, explicabo modi sit consequuntur aliquid.Ducimus, fugit quos
+        consectetur similique optio dicta dignissimos quam, iure magni eius,
+        eaque mollitia ipsum libero facere fuga cumque nulla ullam cupiditate
+        nostrum error tenetur cum modi praesentium nihil! Laudantium!
       </p>
     </div>
   );

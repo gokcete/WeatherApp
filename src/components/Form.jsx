@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import {
   useCountries,
   useStates,
@@ -49,9 +49,26 @@ const Form = () => {
     [getWeatherData]
   );
 
+  const selected = useMemo(() => {
+    const selectedCountry = selectedLocations.at(selectedLocations.length - 1);
+    const selectedState = selectedLocations.at(selectedLocations.length - 2);
+    const selectedCity = selectedLocations.at(selectedLocations.length - 3);
+
+    return {
+      country: selectedCountry?.id,
+      state: selectedState?.id,
+      city: selectedCity?.id,
+    };
+  }, [selectedLocations]);
+
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <select className={styles.select} onChange={handleCountrySelect} required>
+      <select
+        className={styles.select}
+        onChange={handleCountrySelect}
+        value={selected.country}
+        required
+      >
         <option value="">Select a country</option>
 
         {countries.map((country) => (
@@ -63,6 +80,7 @@ const Form = () => {
       <select
         className={states.length > 0 ? styles.select : styles.hidden}
         onChange={handleStateSelect}
+        value={selected.state}
       >
         <option value="">
           {states.length > 0 ? "Select a state" : "No selection possible"}
@@ -79,6 +97,7 @@ const Form = () => {
       <select
         className={cities.length > 0 ? styles.select : styles.hidden}
         onChange={handleCitySelect}
+        value={selected.city}
       >
         <option value="">
           {cities.length > 0 ? "Select a city" : "No selection possible"}
